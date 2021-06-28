@@ -14,7 +14,7 @@ def hello():
 @app.route("/api/get_sample/cpu")
 def get_sample_cpu():
 
-    process = os.popen('cat /proc/loadavg | awk \'{print $1}\'')
+    process = os.popen('cat /proc/loadavg | awk \'{print $3}\'')
     cpu_usage  = process.read()
     process.close()
 
