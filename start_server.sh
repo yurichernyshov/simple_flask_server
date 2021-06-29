@@ -2,7 +2,7 @@
 
 
 START_PORT=55555
-NUMBER_OF_PORTS=1
+NUMBER_OF_PORTS=3
 
 while [ 1 ]
 do
@@ -27,7 +27,7 @@ do
 		"1" )
 
 
-			for ((var=0; var<10; var++))
+			for ((var=0; var<$NUMBER_OF_PORTS; var++))
 			do
  	 		  python3 app.py $(($START_PORT+$var)) &
 			done
@@ -35,16 +35,16 @@ do
 
 		"2" )
 
-			ps -aux | grep "python3 app"
+			ps -aux | grep "python3 app" | head -n -1
 			;;
 
 		"3" )
 
 
-			for var in ${ports[*]}
-                        do
-                          echo $var 
-                        done
+			for P in $(ps -aux | grep 'app.py' | head -n -1 | awk '{print $2}')
+			do 
+			  kill -9 $P 
+		        done
 			;;
 		"x" )
 			exit 0
