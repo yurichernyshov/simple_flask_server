@@ -2,7 +2,7 @@
 
 
 START_PORT=55555
-NUMBER_OF_PORTS=3
+NUMBER_OF_PORTS=1
 
 while [ 1 ]
 do
